@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery.bxslider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/jquery.bxslider.js"></script>
+    <script>
+        $(function () {
+            $('.slide').bxSlider({
+                auto: true
+            });
+        })
+
+        window.onload = function () {
+            var elm = ".box";
+            $(elm).each(function (index) {
+                // 개별적으로 Wheel 이벤트 적용
+                $(this).on("mousewheel", function (e) {
+                    e.preventDefault();
+                    var delta = 0;
+                    if (!event) event = window.event; //IE
+                    if (event.wheelDelta) {
+                        delta = event.wheelDelta / 120; //IE,Chrome
+                        if (window.opera) delta = -delta; //Opera
+                    } else if (event.detail)
+                        delta = -event.detail / 3; //파이어폭스
+                    var moveTop = $(window).scrollTop();
+                    var elmSelecter = $(elm).eq(index);
+                    // 마우스휠을 위에서 아래로
+                    if (delta < 0) {
+                        if ($(elmSelecter).next() != undefined) {
+                            try {
+                                moveTop = $(elmSelecter).next().offset().top;
+                                navi.removeClass("active");
+                                navi.eq(index).next().addClass("active");
+                            } catch (e) {}
+                        }
+
+                    } else { // 마우스휠을 아래에서 위로
+                        if ($(elmSelecter).prev() != undefined) {
+                            try {
+                                moveTop = $(elmSelecter).prev().offset().top;
+                                navi.removeClass("active");
+                                navi.eq(index).prev().addClass("active");
+
+                            } catch (e) {}
+                        }
+                    }
+
+                    // 화면 이동 0.5초(500)
+                    $("html,body").stop().animate({
+                        scrollTop: moveTop + 'px'
+                    }, {
+                        duration: 400,
+                        complete: function () {}
+                    });
+                });
+            });
+
+            var navi = $('nav>ul>li')
+            var navi_sub = $('nav>ul>li>ul>li')
+            var cont = $('body > .box')
+            var cScroll = $(window).scroll().top
+
+            navi.click(function (e) {
+                e.preventDefault();
+                var target = $(this).index();
+                // alert(index)
+                var page = cont.eq(target)
+                var PageTop = page.offset().top
+                // alert(PageTop)
+                if(target==3){
+                    PageTop = page.cScroll
+                }
+                if(target==4){
+                    PageTop = page.next().offset().top
+                }
+
+                $(this).addClass("active").siblings().removeClass("active")
+
+                $('html,body').animate({
+                    scrollTop: PageTop
+                }, 500)
+            })
+            navi_sub.click(function(e){
+                e.preventDefault();
+                var target = $(this).index();
+                var page_code = cont.eq(3)
+                var page_design = cont.eq(4)
+
+                if(target==0){
+                    PageTop = page_code.offset().top
+                } else {
+                    PageTop = page_design.offset().top
+                }
+                $(this).addClass("active").siblings().removeClass("active")
+                $('html,body').animate({
+                    scrollTop:PageTop
+                },500)
+            })
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <input type="checkbox" id="btn">
+    <label for="btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <div class="menu">
+        <nav>
+            <ul>
+                <li class="active"><a href="#">INTRO</a></li>
+                <li><a href="#">ABOUT ME</a></li>
+                <li><a href="#">SKILL</a></li>
+                <li><a href="#">PORTFOLIO</a>
+                    <ul class="sub">
+                        <li><a href="#">-Web</a></li>
+                        <li><a href="#">-Design</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="box">
+        <div class="intro">
+            <h1>INTRO</h1>
+            <p>
+                웹 디자이너 & 퍼블리셔 <br>
+                규장's 포트폴리오
+            </p>
+        </div>
+    </div>
+    <div class="box">
+        <div class="about">
+            <h1>ABOUT ME</h1>
+            <h2>ABOUT ME</h2>
+            <div>
+                <div class="photo"><img src="./images/photo.png" alt="photo"></div>
+                <div class="profile">
+                    <h3>PROFILE</h3>
+                    <p>
+                        <span>NAME</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>이규장</a> <br>
+                        <span>AGES</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>1994.03.26</a> <br>
+                        <span>ADDRESS</span> &nbsp; <a>부산시 해운대구</a> <br>
+                        <span>E-MAIL</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>rbwkd94@gmail.com</a>
+                    </p>
+                    <h3>LICENCE & EDUCATION</h3>
+                    <p>
+                        <span>21.06</span> 정보처리기사 <br>
+                        <span>21.12</span> 양정인력개발센터 <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        [UIUX 웹디자인&웹퍼블리셔] <br>
+                        <span>22.02</span> 부산외국어대학교 <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        임베디드 IT 학과 졸업 <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="skill">
+            <h1>SKILL</h1>
+            <div>
+                <div class="hashtag">
+                    <p>
+                        기본기를 탄탄하게 다졌습니다. <br>
+                        <span>
+                            <b>#HTML</b> <b>#CSS</b> <b>#Ps</b> <b>#Al</b>
+                            <b>#JavaScript</b> <b>#jQuery</b>
+                        </span>
+                    </p>
+                </div>
+                <div class="program">
+                    <p>
+                        <span>Photoshop + Illustrator</span> <br><br>
+                        사진보정, 로고 및 아이콘 제작, 배너 등의 <br>
+                        디자인 작업을 할수 있습니다. <br><br>
+                        <span>HTML + CSS</span> <br><br>
+                        웹 페이지의 컨셉트와 컨텐츠내용에 맞게 <br>
+                        다양한 레이아웃을 제작, 수정할 수 있습니다. <br><br>
+
+                        <span>JavaScript + jQuery</span> <br><br>
+                        자바스크립트의 기본적인 문법을 잘 이해하고 <br> 다룰수 있습니다.
+                        <br><br>
+                        제이쿼리를 활용하여 다양한 애니메이션등 효과를 <br> 구현 할 수 있습니다.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="web">
+            <h1>PORTFOLIO</h1>
+            <h2>Web</h2>
+            <div>
+                <div class="genesis">
+                    <img src="./images/genesis.png" alt="genesis">
+                    <p>
+                        <span>제네시스 랜딩페이지 <br> &nbsp;&nbsp;&nbsp;
+                            -포트폴리오용</span><br>
+                        신상품 출시에 따른 여러 이벤트를
+                        홍보하고 상품에 대한 정보를
+                        제공하는 랜딩페이지
+                    </p>
+                    <a href="#">사이트 바로가기</a>
+                </div>
+                <div class="kubos">
+                    <img src="./images/kubo.png" alt="kubo">
+                    <p>
+                        <span>쿠보스토어 (축구용품 사이트) <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            -포트폴리오용</span><br>
+                        여러 사이트를 분석하여 각각의
+                        기능들과 개선점을 합치하여
+                        제작한 웹 페이지
+                    </p>
+                    <a href="#">사이트 바로가기</a>
+                </div>
+                <div class="citroen">
+                    <img src="./images/citroen.png" alt="citroen">
+                    <p>
+                        <span>시트로엥 홈페이지 <br> &nbsp;&nbsp;&nbsp;
+                            -포트폴리오용</span><br>
+                        기존 사이트의 문제점을 개선하고
+                        벤치마킹 하여 제작 및 수정한
+                        자동차 브랜드 홈페이지
+                    </p>
+                    <a href="#">사이트 바로가기</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="box">
+        <div class="design">
+            <h1>PORTFOLIO</h1>
+            <h2>Design</h2>
+            <div class="slide-box">
+                <div class="slide">
+                    <div class="slide01">
+                        <img src="./images/slide01.png" alt="slide01">
+                    </div>
+                    <div class="slide02">
+                        <img src="./images/slide02.png" alt="slide02">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="contact">
+            <h1>CONTACT</h1>
+            <h2>Contact</h2>
+            <div>
+                <p class="first">
+                    "화려하기만 한 디자인이 아닌, <br>
+                </p>
+                <p class="middle">
+                    <span>가치있는</span> <b>디자인</b>과 <b>UX</b>를 제공하는 <br>
+                </p>
+                <p class="last">
+                    웹 퍼블리셔, 이규장이 되겠습니다."
+                </p>
+            </div>
+            <div class="sns">
+                <div class="qr">
+                    <img src="./images/QR.png" alt="qr">
+                </div>
+                <div class="insta">
+                    <p class="insta">
+                        Instagram <br>
+                        E-mail
+                    </p>
+                </div>
+                <div class="number">
+                    <p class="number">
+                        <a href="https://www.instagram.com/kue_bo/" target="_blank">@kue_bo</a> <br>
+                        <a href="mailto:rbwkd94@@gmail.com">rbwkd94@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>
+                본 페이지는 상업적 목적이 아닌 개인 포트폴리오용으로 제작되었습니다. <br>
+                ⓒ2021 , 웹디자이너 이규장. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

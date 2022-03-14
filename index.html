@@ -1,309 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/jquery.bxslider.css">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <title>퍼블리셔 이규장의 포트폴리오</title>
+	<link rel="stylesheet" type="text/css" href="./css/jquery.fullPage.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/slick.css">
+	<link rel="stylesheet" href="./css/slick-theme.css">
+	<link rel="stylesheet" href="./css/common.css">
 
+	<title>CITROEN-korea</title>
 
-    <script src="./js/jquery-3.1.1.min.js"></script>
-    <script src="./js/jquery.bxslider.js"></script>
-    <script>
-        $(function () {
-            $('.slide').bxSlider({
-                auto: true
-            });
-        })
-
-        window.onload = function () {
-            var elm = ".box";
-            $(elm).each(function (index) {
-                // 개별적으로 Wheel 이벤트 적용
-                $(this).on("mousewheel", function (e) {
-                    e.preventDefault();
-                    var delta = 0;
-                    if (!event) event = window.event; //IE
-                    if (event.wheelDelta) {
-                        delta = event.wheelDelta / 120; //IE,Chrome
-                        if (window.opera) delta = -delta; //Opera
-                    } else if (event.detail)
-                        delta = -event.detail / 3; //파이어폭스
-                    var moveTop = $(window).scrollTop();
-                    var elmSelecter = $(elm).eq(index);
-                    // 마우스휠을 위에서 아래로
-                    if (delta < 0) {
-                        if ($(elmSelecter).next() != undefined) {
-                            try {
-                                moveTop = $(elmSelecter).next().offset().top;
-                                navi.removeClass("active");
-                                navi.eq(index).next().addClass("active");
-                            } catch (e) {}
-                        }
-
-                    } else { // 마우스휠을 아래에서 위로
-                        if ($(elmSelecter).prev() != undefined) {
-                            try {
-                                moveTop = $(elmSelecter).prev().offset().top;
-                                navi.removeClass("active");
-                                navi.eq(index).prev().addClass("active");
-
-                            } catch (e) {}
-                        }
-                    }
-
-                    // 화면 이동 0.5초(500)
-                    $("html,body").stop().animate({
-                        scrollTop: moveTop + 'px'
-                    }, {
-                        duration: 400,
-                        complete: function () {}
-                    });
-                });
-            });
-
-            var navi = $('nav>ul>li')
-            var navi_sub = $('nav>ul>li>ul>li')
-            var cont = $('body > .box')
-            var cScroll = $(window).scroll().top
-
-            navi.click(function (e) {
-                e.preventDefault();
-                var target = $(this).index();
-                // alert(index)
-                var page = cont.eq(target)
-                var PageTop = page.offset().top
-                // alert(PageTop)
-                if(target==3){
-                    PageTop = page.cScroll
-                }
-                if(target==4){
-                    PageTop = page.next().offset().top
-                }
-
-                $(this).addClass("active").siblings().removeClass("active")
-
-                $('html,body').animate({
-                    scrollTop: PageTop
-                }, 500)
-            })
-            navi_sub.click(function(e){
-                e.preventDefault();
-                var target = $(this).index();
-                var page_code = cont.eq(3)
-                var page_design = cont.eq(4)
-
-                if(target==0){
-                    PageTop = page_code.offset().top
-                } else {
-                    PageTop = page_design.offset().top
-                }
-                $(this).addClass("active").siblings().removeClass("active")
-                $('html,body').animate({
-                    scrollTop:PageTop
-                },500)
-            })
-        }
-    </script>
 
 
 </head>
 
 <body>
-    <input type="checkbox" id="btn">
-    <label for="btn">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
-    <div class="menu">
-        <nav>
-            <ul>
-                <li class="active"><a href="#">INTRO</a></li>
-                <li><a href="#">ABOUT ME</a></li>
-                <li><a href="#">SKILL</a></li>
-                <li><a href="#">PORTFOLIO</a>
-                    <ul class="sub">
-                        <li><a href="#">-Web</a></li>
-                        <li><a href="#">-Design</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">CONTACT</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="box">
-        <div class="intro">
-            <h1>INTRO</h1>
-            <p>
-                웹 디자이너 & 퍼블리셔 <br>
-                규장's 포트폴리오
-            </p>
-        </div>
-    </div>
-    <div class="box">
-        <div class="about">
-            <h1>ABOUT ME</h1>
-            <h2>ABOUT ME</h2>
-            <div>
-                <div class="photo"><img src="./images/photo.png" alt="photo"></div>
-                <div class="profile">
-                    <h3>PROFILE</h3>
-                    <p>
-                        <span>NAME</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>이규장</a> <br>
-                        <span>AGES</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>1994.03.26</a> <br>
-                        <span>ADDRESS</span> &nbsp; <a>부산시 해운대구</a> <br>
-                        <span>E-MAIL</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>rbwkd94@gmail.com</a>
-                    </p>
-                    <h3>LICENCE & EDUCATION</h3>
-                    <p>
-                        <span>21.06</span> 정보처리기사 <br>
-                        <span>21.12</span> 양정인력개발센터 <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        [UIUX 웹디자인&웹퍼블리셔] <br>
-                        <span>22.02</span> 부산외국어대학교 <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        임베디드 IT 학과 졸업 <br>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="skill">
-            <h1>SKILL</h1>
-            <div>
-                <div class="hashtag">
-                    <p>
-                        기본기를 탄탄하게 다졌습니다. <br>
-                        <span>
-                            <b>#HTML</b> <b>#CSS</b> <b>#Ps</b> <b>#Al</b>
-                            <b>#JavaScript</b> <b>#jQuery</b>
-                        </span>
-                    </p>
-                </div>
-                <div class="program">
-                    <p>
-                        <span>Photoshop + Illustrator</span> <br><br>
-                        사진보정, 로고 및 아이콘 제작, 배너 등의 <br>
-                        디자인 작업을 할수 있습니다. <br><br>
-                        <span>HTML + CSS</span> <br><br>
-                        웹 페이지의 컨셉트와 컨텐츠내용에 맞게 <br>
-                        다양한 레이아웃을 제작, 수정할 수 있습니다. <br><br>
+	<div id="up"></div>
+	<header id="top">
+		<nav>
+			<div class="logo">
+				<a href="#none"><img src="images/logo.png" alt="logo"></a>
+			</div>
+			<ul class="menu">
+				<li>
+					<a href="#">모델</a>
+					<ul class="sub_menu">
+						<div class="sub_name">
+							<p>모델</p>
+						</div>
+						<div class="sub_li">
+							<li><a href="#"> C3</a></li>
+							<li><a href="#"> C3 AIRCROSS</a></li>
+							<li><a href="#"> C4</a></li>
+							<li><a href="#"> C5</a></li>
+							<li><a href="#"> C5 AIRCROSS</a></li>
+						</div>
+					</ul>
+				</li>
+				<li>
+					<a href="#">구매</a>
+					<ul class="sub_menu">
+						<div class="sub_name">
+							<p>구매</p>
+						</div>
+						<div class="sub_li">
+							<li><a href="#"> 구매 프로그램</a></li>
+							<li><a href="#"> 스펙트럼</a></li>
+							<li><a href="#"> 견적내기</a></li>
+							<li><a href="#"> 상담신청</a></li>
+							<li><a href="#"> 제원 조회하기</a></li>
+						</div>
+					</ul>
+				</li>
+				<li>
+					<a href="#">체험</a>
+					<ul class="sub_menu">
+						<div class="sub_name">
+							<p>체험</p>
+						</div>
+						<div class="sub_li">
+							<li><a href="#"> 스페이스</a></li>
+							<li><a href="#"> 시승 신청하기</a></li>
+							<li><a href="#"> 전시장찾기</a></li>
+						</div>
+					</ul>
+				</li>
+				<li>
+					<a href="#">멤버스</a>
+					<ul class="sub_menu">
+						<div class="sub_name">
+							<p>멤버스</p>
+						</div>
+						<div class="sub_li">
+							<li><a href="#"> 시트로엥 멤버스</a></li>
+							<li><a href="#"> 멤버스 커넥티드</a></li>
+							<li><a href="#"> 디지털 서비스</a></li>
+							<li><a href="#"> 차량관리 서비스</a></li>
+						</div>
+					</ul>
+				</li>
+				<li>
+					<a href="#">고객센터</a>
+					<ul class="sub_menu">
+						<div class="sub_name">
+							<p>고객센터</p>
+						</div>
+						<div class="sub_li">
+							<li><a href="#"> 고객센터 안내</a></li>
+							<li><a href="#"> 공지사항</a></li>
+							<li><a href="#"> 이벤트</a></li>
+							<li><a href="#"> 자주 묻는 질문</a></li>
+							<li><a href="#"> 다운로드 센터</a></li>
+						</div>
+					</ul>
+				</li>
+				<li>
+					<a href="#">마이페이지</a>
+					<ul class="sub_menu">
+						<div class="sub_name">
+							<p>마이페이지</p>
+						</div>
+						<div class="sub_li">
+							<li><a href="#"> 마이 시트로엥</a></li>
+							<li><a href="#"> 상담,견적 내역</a></li>
+						</div>
+					</ul>
+				</li>
+			</ul>
+		</nav>
 
-                        <span>JavaScript + jQuery</span> <br><br>
-                        자바스크립트의 기본적인 문법을 잘 이해하고 <br> 다룰수 있습니다.
-                        <br><br>
-                        제이쿼리를 활용하여 다양한 애니메이션등 효과를 <br> 구현 할 수 있습니다.
-                    </p>
+	</header>
+	<div id="fullpage">
 
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="web">
-            <h1>PORTFOLIO</h1>
-            <h2>Web</h2>
-            <div>
-                <div class="genesis">
-                    <img src="./images/genesis.png" alt="genesis">
-                    <p>
-                        <span>제네시스 랜딩페이지 <br> &nbsp;&nbsp;&nbsp;
-                            -포트폴리오용</span><br>
-                        신상품 출시에 따른 여러 이벤트를
-                        홍보하고 상품에 대한 정보를
-                        제공하는 랜딩페이지
-                    </p>
-                    <a href="#">사이트 바로가기</a>
-                </div>
-                <div class="kubos">
-                    <img src="./images/kubo.png" alt="kubo">
-                    <p>
-                        <span>쿠보스토어 (축구용품 사이트) <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            -포트폴리오용</span><br>
-                        여러 사이트를 분석하여 각각의
-                        기능들과 개선점을 합치하여
-                        제작한 웹 페이지
-                    </p>
-                    <a href="#">사이트 바로가기</a>
-                </div>
-                <div class="citroen">
-                    <img src="./images/citroen.png" alt="citroen">
-                    <p>
-                        <span>시트로엥 홈페이지 <br> &nbsp;&nbsp;&nbsp;
-                            -포트폴리오용</span><br>
-                        기존 사이트의 문제점을 개선하고
-                        벤치마킹 하여 제작 및 수정한
-                        자동차 브랜드 홈페이지
-                    </p>
-                    <a href="#">사이트 바로가기</a>
-                </div>
-            </div>
+		<div id="section0" class="slide1 section">
+			<div><a href="#"><img src="./images/main_banner01.png" alt="메인배너1"></a></div>
+			<div><a href="#"><img src="./images/main_banner02.png" alt="메인배너2"></a></div>
+			<div><a href="#"><img src="./images/main_banner03.png" alt="메인배너3"></a></div>
+		</div>
+		<div id="section1" class="section moveDown inner">
+			<div class="video">
+				<iframe src="https://www.youtube.com/embed/U19cGKa1MOk" title="YouTube video player" frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen>
+				</iframe>
+				<div class="text">
+					<p>
+						<span>
+							시트로엥 SUV RANGE <br>
+							THE MASTERS of TRAVEL
+						</span>
+						<br><br><br>
 
-        </div>
-    </div>
-    <div class="box">
-        <div class="design">
-            <h1>PORTFOLIO</h1>
-            <h2>Design</h2>
-            <div class="slide-box">
-                <div class="slide">
-                    <div class="slide01">
-                        <img src="./images/slide01.png" alt="slide01">
-                    </div>
-                    <div class="slide02">
-                        <img src="./images/slide02.png" alt="slide02">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="box">
-        <div class="contact">
-            <h1>CONTACT</h1>
-            <h2>Contact</h2>
-            <div>
-                <p class="first">
-                    "화려하기만 한 디자인이 아닌, <br>
-                </p>
-                <p class="middle">
-                    <span>가치있는</span> <b>디자인</b>과 <b>UX</b>를 제공하는 <br>
-                </p>
-                <p class="last">
-                    웹 퍼블리셔, 이규장이 되겠습니다."
-                </p>
-            </div>
-            <div class="sns">
-                <div class="qr">
-                    <img src="./images/QR.png" alt="qr">
-                </div>
-                <div class="insta">
-                    <p class="insta">
-                        Instagram <br>
-                        E-mail
-                    </p>
-                </div>
-                <div class="number">
-                    <p class="number">
-                        <a href="https://www.instagram.com/kue_bo/" target="_blank">@kue_bo</a> <br>
-                        <a href="mailto:rbwkd94@@gmail.com">rbwkd94@gmail.com</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <p>
-                본 페이지는 상업적 목적이 아닌 개인 포트폴리오용으로 제작되었습니다. <br>
-                ⓒ2021 , 웹디자이너 이규장. All Rights Reserved.
-            </p>
-        </div>
-    </div>
-    </div>
+						모험을 떠나보세요
+						머리를 식히고 싶거나 내게 소중한 것들을 <br>
+						돌아 보고 싶을 때 짧은 여행이 될 지도, <br>
+						긴 여정이 시작될지도 모릅니다<br><br>
+
+						시트로엥의 편안함과 함께라면 모든 모험이 즐거워집니다<br>
+						C3 에어크로스 SUV와 C5 에어크로스 SUV <br>
+						2020년 시트로엥 SUV RANGE, 편안함을 드립니다
+					</p>
+					<br><br><br>
+					<a href="#none">자세히 보기 ></a>
+				</div>
+			</div>
+		</div>
+
+		<div id="section2" class="section moveDown">
+			<div class="inner fix">
+				<h2>OUR MODELS</h2>
+				<h3>역동적이면서도 우아한 디자인과 첨단 기술을 탑재한 시트로엥만의 감성을 느껴보세요</h3>
+				<div class="model">
+					<div class="sub_model">
+						<h4>C3</h4>
+						<img src="./images/c3.png" alt="c3">
+						<a href="#none">자세히보기</a>
+					</div>
+					<div class="sub_model">
+						<h4>C4 <i>AIRCROSS</i> </h4>
+						<img src="./images/c4 AIRCROSS.png" alt="c4aircross">
+						<a href="#none">자세히보기</a>
+					</div>
+					<div class="sub_model">
+						<h4>C4</h4>
+						<img src="./images/c4.png" alt="C4">
+						<a href="#none">자세히보기</a>
+					</div>
+					<div class="sub_model">
+						<h4>C5</h4>
+						<img src="./images/c5.png" alt="c5">
+						<a href="#none">자세히보기</a>
+					</div>
+				</div>
+				<div class="more">
+					<a href="#none">더 많은 모델 보러가기</a>
+				</div>
+			</div>
+		</div>
+		<div id="section3" class="section moveDown">
+			<div class="inner">
+				<div class="title">
+					<h2>CITROEN's concept & promotion</h2>
+					<h3>다양한 컨셉트와 프로모션을 만나보세요</h3>
+				</div>
+				<div class="events">
+					<div>
+						<img src="images/concept.png" alt="concept">
+						<a href="#none">자세히 보기</a>
+					</div>
+					<div>
+						<img src="images/promotion.png" alt="promotion">
+						<a href="#none">자세히 보기</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="section4" class="section footer">
+			<div class="inner">
+				<div class="fix">
+					<div class="footmenu">
+						<a href="#none">사이트맵</a>
+						<a href="#none">이용약관</a>
+						<a href="#none" class="brown">개인정보 처리방침</a>
+						<a href="#none">저작권 안내</a>
+						<a href="#none">보증 안내</a>
+						<a href="#none">자동차 교환 및 환불규정</a>
+						<a href="#none">하자 재발 통보 안내</a>
+					</div>
+
+					<div class="language">
+						<a href="#none" class="ENG">ENG</a>
+						<a href="#none" class="KOR">KOR</a>
+					</div>
+				</div>
+			</div>
+			<div class="line"></div>
+			<div class="inner">
+				<div class="fix">
+					<div class="sns">
+						<a href="#none"><img src="./images/youtube.png" alt="youtube"></a>
+						<a href="#none"><img src="./images/instagram.png" alt="instagram"></a>
+						<a href="#none"><img src="./images/facebook.png" alt="facebook"></a>
+					</div>
+					
+				</div>
+
+				<div class="footlogo">
+					<a href="#none"><img src="./images/logo_foot.png" alt="logo"></a>
+					<h3>© Copyright 2021 Stellantis Group. <br>
+						All Rights Reserved.</h3>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="./js/jquery-3.1.1.min.js"></script>
+	<script src="./js/slick.js"></script>
+	<script src="./js/slick.min.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script> -->
+
+	<script type="text/javascript" src="./js/jquery.fullPage.js"></script>
+	<script type="text/javascript" src="./js/examples.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#fullpage').fullpage({
+				'verticalCentered': false,
+				'css3': true,
+				// 'sectionsColor': ['#F0F2F4', '#fff', '#fff', '#fff'],
+				'navigation': true,
+				'navigationPosition': 'right',
+				'navigationTooltips': ['Banners', 'Video', 'Models', 'Events', 'Footer'],
+
+				'afterLoad': function (anchorLink, index) {
+					if (index == 2) {
+						$().addClass('active');
+					}
+				},
+
+				// 'onLeave': function (index, nextIndex, direction) {
+				// 	if (index == 3 && direction == 'down') {
+				// 		$('.section').eq(index - 1).removeClass('moveDown').addClass('moveUp');
+				// 	} else if (index == 3 && direction == 'up') {
+				// 		$('.section').eq(index - 1).removeClass('moveUp').addClass('moveDown');
+				// 	}
+
+				// 	$('#staticImg').toggleClass('active', (index == 2 && direction == 'down') || (index ==
+				// 		4 && direction == 'up'));
+				// 	$('#staticImg').toggleClass('moveDown', nextIndex == 4);
+				// 	$('#staticImg').toggleClass('moveUp', index == 4 && direction == 'up');
+				// }
+			});
+		});
+
+		$(function () {
+
+
+			$('.menu>li').mouseenter(function () {
+				$(this).children('.sub_menu').stop().slideDown();
+				// $('.sub_bg').stop().slideDown();
+			});
+
+			$('.menu>li').mouseleave(function () {
+				$(this).children('.sub_menu').stop().slideUp();
+				// $('.sub_bg').stop().slideUp();
+			});
+
+			$('.slide1').slick({
+				slidesToScroll: 1,
+				autoplay: true,
+				autoplaySpeed: 2000,
+			});
+
+		})
+	</script>
+
+
+
 </body>
 
 </html>
